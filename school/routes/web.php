@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hello');
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::get('/admin/list', function () {
+    return view('admin.admin.list');
+})->name('admin.list');
