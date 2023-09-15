@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,18 +18,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'AuthLogin'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-//Route::get('/', [\App\Http\Controllers\AuthController::class, 'login'])->name('forgot_password');
+Route::get('/forgot-password', [AuthController::class, 'forgot_password'])->name('forgot_password');
 //Route::get('/', [\App\Http\Controllers\AuthController::class, 'login'])->name('register');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
 
-Route::get('/admin/list', function () {
-    return view('admin.admin.list');
+Route::get('/admin/admin/list', function () {
+    $user = \Illuminate\Support\Facades\Auth::user();
+    $user_type = \Illuminate\Support\Facades\Auth::user()->user_type;
+    return view('admin.admin.list', [
+        'user'=>$user,
+        'user_type'=>$user_type,
+    ]);
 })->name('admin.list');
 
-Route::group(['middleware'=>'admin'], function (){});
-Route::group(['middleware'=>'teacher'], function (){});
-Route::group(['middleware'=>'student'], function (){});
-Route::group(['middleware'=>'parent'], function (){});
+Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'], function (){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::group(['prefix'=>'teacher', 'as'=>'teacher.', 'middleware'=>'teacher'], function (){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::group(['prefix'=>'student', 'as'=>'student.', 'middleware'=>'student'], function (){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+Route::group(['prefix'=>'parent', 'as'=>'parent.', 'middleware'=>'parent'], function (){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});

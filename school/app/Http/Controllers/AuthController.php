@@ -10,10 +10,24 @@ class AuthController extends Controller
 {
     public function login()
     {
-//dd(Hash::make(1));
         if (!empty(Auth::check()))
         {
-            return redirect('/admin/dashboard');
+            if (Auth::user()->user_type == 'admin')
+            {
+                return redirect()->route('admin.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'teacher')
+            {
+                return redirect()->route('teacher.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'student')
+            {
+                return redirect()->route('student.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'parent')
+            {
+                return redirect()->route('parent.dashboard');
+            }
         }
         return view('auth.login');
     }
@@ -27,8 +41,23 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($user))
         {
+            if (Auth::user()->user_type == 'admin')
+            {
+                return redirect()->route('admin.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'teacher')
+            {
+                return redirect()->route('teacher.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'student')
+            {
+                return redirect()->route('student.dashboard');
+            }
+            elseif (Auth::user()->user_type == 'parent')
+            {
+                return redirect()->route('parent.dashboard');
+            }
 
-            return redirect()->route('dashboard');
         }
         else
         {
@@ -40,5 +69,10 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect('/');
+    }
+
+    public function forgot_password()
+    {
+        return view('auth.forgot_password');
     }
 }

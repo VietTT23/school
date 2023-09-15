@@ -61,7 +61,7 @@
             </form>
 
             <p class="mb-1">
-                <a href="">Forgot password?</a>
+                <a href="{{ route('forgot_password') }}">Forgot password?</a>
             </p>
             <p class="mb-0">
                 <a href="" class="text-center">Register</a>
