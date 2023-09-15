@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Forgot Password</title>
+    <title>Reset Password</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,28 +18,38 @@
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="" class="h1"><b>Forgot your password</b></a>
+            <a href="" class="h1"><b>Reset Password</b></a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+            <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
             @include('_message')
-            <form action="{{ route('post_forgot_password') }}" method="post">
+            <form action="{{ route('update_password', Request::segment(2)) }}" method="post">
                 @csrf
+                @method('put')
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+                        <button type="submit" class="btn btn-primary btn-block">Change password</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
+
             <p class="mt-3 mb-1">
                 <a href="">Login</a>
             </p>
