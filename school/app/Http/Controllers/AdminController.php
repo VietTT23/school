@@ -21,12 +21,15 @@ class AdminController extends Controller
                                 ->where('user_type','=', 'admin')
                                 ->where('is_delete','=','not_delete')
                                 ->orderBy('created_at')
-                                ->get();
+                                ->paginate(1);
+
+        $page = $admins->appends(\Illuminate\Support\Facades\Request::except('page'))->links();
         return view('admin.admin.list', [
             'user'=>$user,
             'user_type'=>$user_type,
             'title'=>$title,
             'admins'=>$admins,
+            'page'=>$page,
         ]);
     }
 

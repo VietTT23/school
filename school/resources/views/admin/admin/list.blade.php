@@ -27,7 +27,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Admin List</h3>
+                                <h3 class="card-title">Admin List (Total: {{ $admins->total() }})</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -72,6 +72,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div style="padding: 10px; float: right">
+                                    {!! $page !!}
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
