@@ -25,11 +25,13 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $admins->name }}" placeholder="Name">
+                        <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $admins->name)  }}" placeholder="Name">
+                        <div style="color: brown">{{ $errors->first('name') }}</div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" name="email" class="form-control" id="email" value="{{ $admins->email }}" placeholder="Email">
+                        <div style="color: brown">{{ $errors->first('email') }}</div>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

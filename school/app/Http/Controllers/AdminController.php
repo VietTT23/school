@@ -50,6 +50,11 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'name'=>['required', 'string'],
+            'email'=>['required', 'email', 'unique:users'],
+            'password'=>['required'],
+        ]);
         $user = User::query()->create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -99,6 +104,10 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        request()->validate([
+            'name'=>['required', 'string'],
+            'email'=>['required', 'email', 'unique:users'],
+        ]);
         $password = $request->password;
         if (!empty($password))
         {

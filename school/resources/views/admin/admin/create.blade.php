@@ -24,15 +24,18 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+                        <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Name">
+                        <div style="color: brown">{{ $errors->first('name') }}</div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="Email">
+                        <div style="color: brown">{{ $errors->first('email') }}</div>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        <div style="color: brown">{{ $errors->first('password') }}</div>
                     </div>
                 </div>
                 <!-- /.card-body -->
