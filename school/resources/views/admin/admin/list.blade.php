@@ -20,6 +20,29 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form action="" method="get">
+                        <div class="card-header">
+                            <h3 class="card-title">Search</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <input type="text" name="q" class="form-control" id="q" value="{{ $search }}" placeholder="search....">
+                                    <div style="color: brown">{{ $errors->first('name') }}</div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                </div>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-md-12">

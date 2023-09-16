@@ -12,24 +12,30 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('q');
         $user = Auth::user();
         $user_type = Auth::user()->user_type;
         $title = 'Admin List';
-        $admins = User::query()->select('*')
+        $admins = User::query()->select(['*'])
                                 ->where('user_type','=', 'admin')
                                 ->where('is_delete','=','not_delete')
-                                ->orderBy('created_at')
-                                ->paginate(1);
+                                ->Where(function ($query) use ($search){
+                                    $query->where('name', 'like', '%'.$search.'%')
+                                            ->orWhere('email', 'like', '%'.$search.'%');
+                                });
 
-        $page = $admins->appends(\Illuminate\Support\Facades\Request::except('page'))->links();
+        $admins = $admins->orderBy('created_at')->paginate(1);
+        $page = $admins->appends([\Illuminate\Support\Facades\Request::except('page'), 'q'=>$search])->links();
+
         return view('admin.admin.list', [
             'user'=>$user,
             'user_type'=>$user_type,
             'title'=>$title,
             'admins'=>$admins,
             'page'=>$page,
+            'search'=>$search,
         ]);
     }
 
