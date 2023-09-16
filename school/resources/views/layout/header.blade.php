@@ -108,7 +108,7 @@
     <a href="index3.html" class="brand-link">
 {{--        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"--}}
 {{--             style="opacity: .8">--}}
-        <span class="brand-text font-weight-light font-weight-bold">School: {{ $user->name }}-site</span>
+        <span class="brand-text font-weight-light font-weight-bold">School: {{ $user_type }}-site</span>
     </a>
 
     <!-- Sidebar -->
@@ -153,7 +153,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.list') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
+                        <a href="{{ route('admin.index') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
                             <i class="nav-icon far fa-user"></i>
                             <p>
                                 Admin

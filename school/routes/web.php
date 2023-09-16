@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -24,17 +25,15 @@ Route::get('/reset-password/{remember_token}', [AuthController::class, 'reset_pa
 Route::put('/reset-password/{remember_token}', [AuthController::class, 'update_password'])->name('update_password');
 
 
-Route::get('/admin/admin/list', function () {
-    $user = \Illuminate\Support\Facades\Auth::user();
-    $user_type = \Illuminate\Support\Facades\Auth::user()->user_type;
-    return view('admin.admin.list', [
-        'user'=>$user,
-        'user_type'=>$user_type,
-    ]);
-})->name('admin.list');
 
 Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'], function (){
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin/list', [AdminController::class, 'index'])->name('index');
+    Route::get('/admin/create', [AdminController::class, 'create'])->name('create');
+    Route::post('/admin/create', [AdminController::class, 'store'])->name('store');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('edit');
+    Route::put('/admin/edit/{id}', [AdminController::class, 'update'])->name('update');
+    Route::put('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
 });
 
 Route::group(['prefix'=>'teacher', 'as'=>'teacher.', 'middleware'=>'teacher'], function (){
