@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::put('/reset-password/{remember_token}', [AuthController::class, 'update_p
 
 
 Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'], function (){
+    //admin
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/list', [AdminController::class, 'index'])->name('index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('create');
@@ -34,6 +36,14 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'], functio
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('edit');
     Route::put('/admin/edit/{id}', [AdminController::class, 'update'])->name('update');
     Route::put('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
+
+    //class
+    Route::get('/class/list', [ClassRoomController::class, 'index'])->name('class.index');
+    Route::get('/class/create', [ClassRoomController::class, 'create'])->name('class.create');
+    Route::post('/class/create', [ClassRoomController::class, 'store'])->name('class.store');
+    Route::get('/class/edit/{id}', [ClassRoomController::class, 'edit'])->name('class.edit');
+    Route::put('/class/edit/{id}', [ClassRoomController::class, 'update'])->name('class.update');
+    Route::put('/class/delete/{id}', [ClassRoomController::class, 'destroy'])->name('class.delete');
 });
 
 Route::group(['prefix'=>'teacher', 'as'=>'teacher.', 'middleware'=>'teacher'], function (){

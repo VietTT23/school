@@ -11,7 +11,7 @@
                         <h1>{{ $title }}</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
-                        <a href="{{ route('admin.create') }}" class="btn btn-primary">Add new admin</a>
+                        <a href="{{ route('admin.class.create') }}" class="btn btn-primary">Add new class</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <input type="text" name="q" class="form-control" id="q" value="{{ $search }}" placeholder="search....">
-                                    <p>Tìm kiếm theo tên hoặc email</p>
+                                    <p>Tìm kiếm theo </p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <button class="btn btn-primary" type="submit">Search</button>
@@ -50,7 +50,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Admin List (Total: {{ $admins->total() }})</h3>
+                                <h3 class="card-title">Class List (Total:)</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -59,28 +59,28 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Type</th>
-                                        <th>Time create</th>
+                                        <th>Status</th>
+                                        <th>Created By</th>
+                                        <th>Time Create</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($admins as $admin)
+                                    @foreach($classes as $class)
                                         <tr>
-                                            <td>{{ $admin->id }}</td>
-                                            <td>{{ $admin->name }}</td>
-                                            <td>{{ $admin->email }}</td>
-                                            <td>{{ $admin->user_type }}</td>
-                                            <td>{{ $admin->created_at->diffForHumans() }}</td>
+                                            <td>{{ $class->id }}</td>
+                                            <td>{{ $class->name }}</td>
+                                            <td>{{ $class->status }}</td>
+                                            <td>{{ $class->create_by_user }}</td>
+                                            <td>{{ $class->created_at->diffForHumans() }}</td>
                                             <td>
                                                 <div class="container-fluid">
                                                     <div class="row mb-2">
                                                         <div class="col-sm-2">
-                                                            <a href="{{ route('admin.edit', ['id'=>$admin->id]) }}" class="btn btn-primary">Edit</a>
+                                                            <a href="{{ route('admin.class.edit', ['id'=>$class->id]) }}" class="btn btn-primary">Edit</a>
                                                         </div>
                                                         <div class="col-sm-2">
-                                                            <form action="{{ route('admin.delete', ['id'=>$admin->id]) }}" method="post">
+                                                            <form action="{{ route('admin.class.delete', ['id'=>$class->id]) }}" method="post">
                                                                 @csrf
                                                                 @method('put')
                                                                 <button class="btn btn-danger">Delete</button>

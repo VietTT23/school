@@ -26,7 +26,7 @@ class AdminController extends Controller
                                             ->orWhere('email', 'like', '%'.$search.'%');
                                 });
 
-        $admins = $admins->orderBy('created_at')->paginate(1);
+        $admins = $admins->orderBy('created_at')->paginate();
         $page = $admins->appends([\Illuminate\Support\Facades\Request::except('page'), 'q'=>$search])->links();
 
         return view('admin.admin.list', [
@@ -120,7 +120,7 @@ class AdminController extends Controller
         $password = $request->password;
         if (!empty($password))
         {
-            User::query()->update([
+            User::query()->where('id', '=', $id)->update([
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'password'=>Hash::make($password),

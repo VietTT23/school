@@ -160,6 +160,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.class.index') }}" class="nav-link @if(Request::segment(2) == 'class') active @endif">
+                            <i class="nav-icon fa fa-graduation-cap"></i>
+                            <p>
+                                Class
+                            </p>
+                        </a>
+                    </li>
+
                 @elseif($user_type == 'teacher')
                     <li class="nav-item">
                         <a href="{{ route('teacher.dashboard') }}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
