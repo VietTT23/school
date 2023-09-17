@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <input type="text" name="q" class="form-control" id="q" value="{{ $search }}" placeholder="search....">
-                                    <p>Tìm kiếm theo </p>
+                                    <p>Tìm kiếm theo tên, trạng thái, người tạo </p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <button class="btn btn-primary" type="submit">Search</button>
@@ -50,7 +50,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Class List (Total:)</h3>
+                                <h3 class="card-title">Class List (Total: {{ $classes->total() }})</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
