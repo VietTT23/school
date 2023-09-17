@@ -19,17 +19,21 @@
 
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('admin.class.update', ['id'=>$classes->id]) }}" method="post">
+            <form action="{{ route('admin.subject.store') }}" method="post">
                 @csrf
-                @method('put')
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name">Class Name</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $classes->name }}" placeholder="Class Name">
+                        <label for="name">Subject Name</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Subject Name">
                         <div style="color: brown">{{ $errors->first('name') }}</div>
                     </div>
                     <div class="form-group">
-                        <label for="status">Status</label>
+                        <label for="name">Subject Type</label>
+                        <input type="text" name="type" class="form-control" id="type" placeholder="Subject Type">
+                        <div style="color: brown">{{ $errors->first('type') }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Status</label>
                         <select name="status" id="status" class="form-control">
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
@@ -38,7 +42,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>

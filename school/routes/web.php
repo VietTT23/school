@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,14 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'], functio
     Route::get('/class/edit/{id}', [ClassRoomController::class, 'edit'])->name('class.edit');
     Route::put('/class/edit/{id}', [ClassRoomController::class, 'update'])->name('class.update');
     Route::put('/class/delete/{id}', [ClassRoomController::class, 'destroy'])->name('class.delete');
+
+    //subject
+    Route::get('/subject/list', [SubjectController::class, 'index'])->name('subject.index');
+    Route::get('/subject/create', [SubjectController::class, 'create'])->name('subject.create');
+    Route::post('/subject/create', [SubjectController::class, 'store'])->name('subject.store');
+    Route::get('/subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
+    Route::put('/subject/edit/{id}', [SubjectController::class, 'update'])->name('subject.update');
+    Route::put('/subject/delete/{id}', [SubjectController::class, 'destroy'])->name('subject.delete');
 });
 
 Route::group(['prefix'=>'teacher', 'as'=>'teacher.', 'middleware'=>'teacher'], function (){

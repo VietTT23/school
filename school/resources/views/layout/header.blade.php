@@ -168,6 +168,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.subject.index') }}"
+                           class="nav-link @if(Request::segment(2) == 'subject') active @endif">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Subject
+                            </p>
+                        </a>
+                    </li>
 
                 @elseif($user_type == 'teacher')
                     <li class="nav-item">

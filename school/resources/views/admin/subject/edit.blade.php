@@ -19,14 +19,19 @@
 
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('admin.class.update', ['id'=>$classes->id]) }}" method="post">
+            <form action="{{ route('admin.subject.update', ['id'=>$subjects->id]) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Class Name</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $classes->name }}" placeholder="Class Name">
+                        <input type="text" name="name" class="form-control" id="name" value="{{ $subjects->name }}" placeholder="Subject Name">
                         <div style="color: brown">{{ $errors->first('name') }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Class Name</label>
+                        <input type="text" name="type" class="form-control" id="type" value="{{ $subjects->type }}" placeholder="Subject Type">
+                        <div style="color: brown">{{ $errors->first('type') }}</div>
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
